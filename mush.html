@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Mushroom Prediction</title>
+		<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+	</head>
+
+	<body>
+		<div class="home" style="display: flex;">
+			<form action="{{ url_for('home')}}">
+    				<button type="submit" class="btn btn-default btn-sm">Home</button>
+			</form>  			  
+		</div>
+		<div class="login">
+			<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='./style.css') }}">
+			<form action="{{ url_for('model', name="mush")}}" method="POST">
+				<button type="submit" style="width: 100%;display: contents;font-size: 35px;" class="btn btn-primary btn-block btn-large">Mushroom Application</button>
+			</form>
+			<h4>Prediction ID: {{ id }}</h4>
+			<!-- Form to enter new data for predictions  -->
+			<form action="{{ url_for('predict', name="mush")}}" method="POST">
+				<select name="cap-shape" required="required">
+					<option>Cap Shape</option>
+					<option value="0">b</option>
+					<option value="1">c</option>
+					<option value="2">f</option>
+					<option value="3">k</option>
+					<option value="4">s</option>
+					<option value="5">x</option>
+				</select><br>
+				<select name="cap-surface" required="required">
+					<option>Cap Surface</option>
+					<option value="0">f</option>
+					<option value="1">g</option>
+					<option value="2">s</option>
+					<option value="3">y</option>
+				</select><br>
+				<select name="cap-color" required="required">
+					<option>Cap Shape</option>
+					<option value="0">b</option>
+					<option value="1">c</option>
+					<option value="2">e</option>
+					<option value="3">g</option>
+					<option value="4">n</option>
+					<option value="5">p</option>
+					<option value="6">r</option>
+					<option value="7">u</option>
+					<option value="8">w</option>
+					<option value="9">y</option>
+				</select><br>
+				<select name="bruises" required="required">
+					<option>Bruises</option>
+					<option value="0">f</option>
+					<option value="1">t</option>
+				</select><br>
+				<select name="odor" required="required">
+					<option>Odor</option>
+					<option value="0">a</option>
+					<option value="1">c</option>
+					<option value="2">f</option>
+					<option value="3">l</option>
+					<option value="4">m</option>
+					<option value="5">n</option>
+					<option value="6">p</option>
+					<option value="7">s</option>
+					<option value="8">y</option>
+				</select><br>
+				<select name="gill-attachment" required="required">
+					<option>Gill Attachment</option>
+					<option value="0">a</option>
+					<option value="1">f</option>
+				</select><br>
+				<select name="gill-spacing" required="required">
+					<option>Gill Spacing</option>
+					<option value="0">c</option>
+					<option value="1">w</option>
+				</select><br>
+				<select name="gill-size" required="required">
+					<option>Gill Size</option>
+					<option value="0">b</option>
+					<option value="1">n</option>
+				</select><br>
+				<select name="gill-color" required="required">
+					<option>Gill Color</option>
+					<option value="0">b</option>
+					<option value="1">e</option>
+					<option value="2">g</option>
+					<option value="3">h</option>
+					<option value="4">k</option>
+					<option value="5">n</option>
+					<option value="6">o</option>
+					<option value="7">p</option>
+					<option value="8">r</option>
+					<option value="9">u</option>
+					<option value="10">w</option>
+					<option value="11">y</option>
+				</select><br>
+				<select name="stalk-shape" required="required">
+					<option>Stalk Shape</option>
+					<option value="0">e</option>
+					<option value="1">t</option>
+				</select><br>
+				<select name="stalk-root" required="required">
+					<option>Stalk Root</option>
+					<option value="0">?</option>
+					<option value="1">b</option>
+					<option value="2">c</option>
+					<option value="3">e</option>
+					<option value="4">r</option>
+				</select><br>
+				<select name="stalk-surface-above-ring" required="required">
+					<option>Stalk Surface Above Ring</option>
+					<option value="0">f</option>
+					<option value="1">k</option>
+					<option value="2">s</option>
+					<option value="3">y</option>
+				</select><br>
+				<select name="stalk-surface-below-ring" required="required">
+					<option>Stalk Surface Below Ring</option>
+					<option value="0">f</option>
+					<option value="1">k</option>
+					<option value="2">s</option>
+					<option value="3">y</option>
+				</select><br>
+				<select name="stalk-color-above-ring" required="required">
+					<option>Stalk Color Above Ring</option>
+					<option value="0">b</option>
+					<option value="1">c</option>
+					<option value="2">e</option>
+					<option value="3">g</option>
+					<option value="4">n</option>
+					<option value="5">o</option>
+					<option value="6">p</option>
+					<option value="7">w</option>
+					<option value="8">y</option>
+				</select><br>
+				<select name="stalk-color-below-ring" required="required">
+					<option>Stalk Color Below Ring</option>
+					<option value="0">b</option>
+					<option value="1">c</option>
+					<option value="2">e</option>
+					<option value="3">g</option>
+					<option value="4">n</option>
+					<option value="5">o</option>
+					<option value="6">p</option>
+					<option value="7">w</option>
+					<option value="8">y</option>
+				</select><br>
+				<select name="veil-type" required="required">
+					<option>Veil Type</option>
+					<option value="0">p</option>
+				</select><br>
+				<select name="veil-color" required="required">
+					<option>Veil Color</option>
+					<option value="0">n</option>
+					<option value="1">o</option>
+					<option value="2">w</option>
+					<option value="3">y</option>
+				</select><br>
+				<select name="ring-number" required="required">
+					<option>Ring Number</option>
+					<option value="0">n</option>
+					<option value="1">o</option>
+					<option value="2">t</option>
+				</select><br>
+				<select name="ring-type" required="required">
+					<option>Ring Type</option>
+					<option value="0">e</option>
+					<option value="1">f</option>
+					<option value="2">l</option>
+					<option value="3">n</option>
+					<option value="4">p</option>
+				</select><br>
+				<select name="spore-print-color" required="required">
+					<option>Spore Print Color</option>
+					<option value="0">b</option>
+					<option value="1">h</option>
+					<option value="2">k</option>
+					<option value="3">n</option>
+					<option value="4">o</option>
+					<option value="5">r</option>
+					<option value="6">u</option>
+					<option value="7">w</option>
+					<option value="8">y</option>
+				</select><br>
+				<select name="population" required="required">
+					<option>Population</option>
+					<option value="0">a</option>
+					<option value="1">c</option>
+					<option value="2">n</option>
+					<option value="3">s</option>
+					<option value="4">v</option>
+					<option value="5">y</option>
+				</select><br>
+				<select name="habitat" required="required">
+					<option>Habitat</option>
+					<option value="0">d</option>
+					<option value="1">g</option>
+					<option value="2">l</option>
+					<option value="3">m</option>
+					<option value="4">p</option>
+					<option value="5">u</option>
+					<option value="6">w</option>
+				</select><br>
+				<button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+			</form>
+			<br>
+			<h3>{{pred}}</h3>
+		</div>
+	</body>
+</html>
